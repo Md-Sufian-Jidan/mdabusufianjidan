@@ -1,4 +1,4 @@
-@import "tailwindcss";
+/* @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
@@ -126,4 +126,151 @@
   html {
     @apply font-sans;
   }
+} */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-jakarta);
+  --font-inter: var(--font-inter);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+}
+
+:root {
+  /* Soft Off-White Background (#F2F1EB) */
+  --background: oklch(0.96 0.01 80);
+  --foreground: oklch(0.25 0.02 160);
+  /* Deep Forest Text */
+
+  --card: oklch(0.98 0.005 80);
+  --card-foreground: oklch(0.25 0.02 160);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.25 0.02 160);
+
+  /* Primary Deep Green (#12372A) */
+  --primary: oklch(0.32 0.05 165);
+  --primary-foreground: oklch(0.98 0.01 160);
+
+  /* Secondary Sage (#3A4D39) */
+  --secondary: oklch(0.42 0.04 155);
+  --secondary-foreground: oklch(0.98 0.01 160);
+
+  /* Accent Mint (#DDEBE2) */
+  --accent: oklch(0.92 0.02 165);
+  --accent-foreground: oklch(0.32 0.05 165);
+
+  --muted: oklch(0.94 0.01 160);
+  --muted-foreground: oklch(0.45 0.02 160);
+
+  --destructive: oklch(0.6 0.18 25);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.88 0.01 160);
+  --input: oklch(0.88 0.01 160);
+  --ring: oklch(0.32 0.05 165);
+
+  --radius: 1rem;
+}
+
+.dark {
+  /* Deep Dark Green/Black Background (#0A0A0A approx) */
+  --background: oklch(0.18 0.01 160);
+  --foreground: oklch(0.95 0.01 160);
+
+  --card: oklch(0.22 0.02 165);
+  --card-foreground: oklch(0.95 0.01 160);
+
+  --popover: oklch(0.22 0.02 165);
+  --popover-foreground: oklch(0.95 0.01 160);
+
+  /* Primary Lighter Green for Dark Mode */
+  --primary: oklch(0.85 0.04 165);
+  --primary-foreground: oklch(0.2 0.02 160);
+
+  /* Secondary Sage */
+  --secondary: oklch(0.35 0.03 160);
+  --secondary-foreground: oklch(0.95 0.01 160);
+
+  --accent: oklch(0.28 0.03 165);
+  --accent-foreground: oklch(0.95 0.01 160);
+
+  --muted: oklch(0.25 0.02 160);
+  --muted-foreground: oklch(0.7 0.02 160);
+
+  --border: oklch(0.3 0.02 160);
+  --input: oklch(0.3 0.02 160);
+  --ring: oklch(0.85 0.04 165);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans transition-colors duration-300;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  p,
+  .text-body {
+    font-family: var(--font-inter);
+  }
+}
+
+/* Glassmorphism Utility */
+@layer components {
+  .glass {
+    @apply bg-background/60 backdrop-blur-md border border-white/10 dark:border-white/5;
+  }
+}
+
+/* Lenis Smooth Scroll Core */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Add to global.css if dots don't show up */
+.bg-dot-thick-primary {
+  background-image: radial-gradient(var(--primary) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.bg-dot-thick-neutral-300 {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
 }

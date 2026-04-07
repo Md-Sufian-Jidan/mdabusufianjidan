@@ -1,17 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import { Navbar } from "@/components/shared/Navbar";
 import Transition from "@/components/shared/Transition";
+import { ThemeProvider } from "@/components/theme-provider";
+import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
+  variable: "--font-jakarta",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -67,14 +70,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${jakarta.variable} ${inter.variable} font-sans antialiased selection:bg-primary selection:text-primary-foreground`}
       >
-        <Navbar />
-        <Transition>
-          {children}
-        </Transition>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {/* Smooth Scroll Container (Lenis integration usually goes here or in a provider) */}
+          <div className="relative flex min-h-screen flex-col">
+            <Navbar />
+            <Transition>
+              <main className="flex-1">
+                {children}
+              </main>
+            </Transition>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -20,12 +20,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
     }));
 
-    const blogRoutes = getAllPosts().map((post) => ({
-        url: `${baseUrl}/blog/${post.slug}`,
-        lastModified: new Date(post.date),
-        changeFrequency: "monthly" as const,
-        priority: 0.6,
-    }));
+    // const blogRoutes = getAllPosts().map((post) => ({
+    //     url: `${baseUrl}/blog/${post.slug}`,
+    //     lastModified: new Date(post.date),
+    //     changeFrequency: "monthly" as const,
+    //     priority: 0.6,
+    // }));  ...blogRoutes
 
-    return [...staticRoutes, ...projectRoutes, ...blogRoutes];
+    return [...staticRoutes, ...projectRoutes,];
 }
