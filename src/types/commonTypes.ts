@@ -19,6 +19,21 @@ export interface TechStack {
     }[];
 }
 
+export interface Service {
+    icon: string;
+    title: string;
+    description: string;
+}
+
+export interface Experience {
+    id: number;
+    title: string;
+    company: string;
+    duration: string;
+    description: string;
+    skills: string[];
+}
+
 export interface BlogPost {
     slug: string;
     title: string;

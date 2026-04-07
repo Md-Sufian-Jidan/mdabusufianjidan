@@ -3,7 +3,9 @@ import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import { Navbar } from "@/components/shared/Navbar";
 import Transition from "@/components/shared/Transition";
 import { ThemeProvider } from "@/components/theme-provider";
+import SmoothScrollProvider from "@/components/shared/SmoothScrollProvider";
 import "./globals.css";
+import { Footer } from "@/components/shared/Footer";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -26,6 +28,9 @@ export const metadata: Metadata = {
     "Junior Full Stack Developer specializing in React, Next.js, and Node.js. Building scalable web applications and open to remote roles in the US and Europe.",
   keywords: [
     "Full Stack Developer",
+    "MERN Stack Developer",
+    "FrontEnd Developer",
+    "BackEnd Developer",
     "React Developer",
     "Next.js Developer",
     "Remote Software Engineer",
@@ -36,14 +41,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://abu-sufian-dev.vercel.app",
+    url: "https://mdabusufianjidan.vercel.app",
     siteName: "Md Abu Sufian Jidan Portfolio",
     title: "Md Abu Sufian Jidan | Full Stack Developer",
     description:
       "Junior Full Stack Developer specializing in React, Next.js, and Node.js. Open to remote roles.",
     images: [
       {
-        url: "/og-image.png",
+        url: "https://i.ibb.co.com/FLRdWSNr/profile.jpg",
         width: 1200,
         height: 630,
         alt: "Md Abu Sufian Jidan - Full Stack Developer",
@@ -55,7 +60,7 @@ export const metadata: Metadata = {
     title: "Md Abu Sufian Jidan | Full Stack Developer",
     description:
       "Junior Full Stack Developer specializing in React, Next.js, and Node.js.",
-    images: ["/og-image.png"],
+    images: ["https://i.ibb.co.com/FLRdWSNr/profile.jpg"],
   },
   robots: {
     index: true,
@@ -80,15 +85,15 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {/* Smooth Scroll Container (Lenis integration usually goes here or in a provider) */}
-          <div className="relative flex min-h-screen flex-col">
+          <SmoothScrollProvider>
             <Navbar />
             <Transition>
               <main className="flex-1">
                 {children}
               </main>
             </Transition>
-          </div>
+            <Footer />
+          </SmoothScrollProvider>
         </ThemeProvider>
       </body>
     </html>
