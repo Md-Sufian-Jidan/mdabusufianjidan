@@ -30,14 +30,13 @@ const Services = () => {
     }, []);
 
     return (
-        <section id="services" className="relative py-24 lg:py-32 overflow-hidden bg-background">
-            
-            {/* Glowing background elements matching futuristic theme */}
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-64 h-64 bg-primary/10 blur-[120px] rounded-full pointer-events-none" />
-            <div className="absolute top-0 right-1/4 w-96 h-96 bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
+        <section id="services" className="relative py-10 md:py-20 px-0 md:px-12 overflow-hidden bg-background">
 
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative z-10" ref={containerRef}>
-                
+            {/* Background Glow */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-xl pointer-events-none" />
+
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10" ref={containerRef}>
+
                 {/* ── Section Header ── */}
                 <motion.div
                     initial={{ opacity: 0, y: 40 }}
@@ -67,10 +66,10 @@ const Services = () => {
                                 className="h-full"
                             >
                                 <Card className="service-card-levitate h-full rounded-[2rem] group relative transition-all duration-500 overflow-hidden bg-background/50 backdrop-blur-xl border border-primary/15 hover:border-primary/40 shadow-xl hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.15)] tech-card-glow">
-                                    
+
                                     {/* Aceternity Style Inner Glow */}
                                     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 border border-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-[2rem]" />
-                                    
+
                                     {/* Top Corner Cyber Accent */}
                                     <div className="absolute top-0 right-8 w-12 h-1 bg-primary/40 rounded-b-md opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_10px_rgba(var(--primary-rgb),0.8)] transition-all duration-500" />
 
@@ -84,7 +83,7 @@ const Services = () => {
                                         </motion.div>
                                         <CardTitle className="text-xl font-serif font-bold tracking-tight text-foreground">{service.title}</CardTitle>
                                     </CardHeader>
-                                    
+
                                     <CardContent className="relative z-10 pt-0">
                                         <CardDescription className="text-sm font-inter text-muted-foreground leading-relaxed">
                                             {service.description}

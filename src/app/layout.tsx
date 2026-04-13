@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
-import { Navbar } from "@/components/shared/Navbar";
 import Transition from "@/components/shared/Transition";
 import { ThemeProvider } from "@/components/theme-provider";
 import SmoothScrollProvider from "@/components/shared/SmoothScrollProvider";
-import "./globals.css";
 import { Footer } from "@/components/shared/Footer";
+import Navbar from "@/components/shared/Navbar";
+import "./globals.css";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],

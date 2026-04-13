@@ -57,7 +57,7 @@ export default function Contact() {
         <section
             id="contact"
             ref={containerRef}
-            className="relative py-24 lg:py-32 bg-background overflow-hidden"
+            className="relative py-10 md:py-20 px-0 md:px-12 bg-background overflow-hidden"
         >
             {/* Minimal Grid Background */}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] z-0" />
@@ -65,7 +65,7 @@ export default function Contact() {
             {/* Glowing orb */}
             <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[300px] h-[300px] bg-primary/10 rounded-full blur-[100px] pointer-events-none" />
 
-            <div className="container mx-auto px-6 lg:px-10 max-w-6xl relative z-10">
+            <div className="container mx-auto px-6 lg:px-10 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
                     {/* Left Side: Contact Info */}
@@ -78,10 +78,10 @@ export default function Contact() {
                     >
                         <div>
                             <motion.span variants={itemVariants} className="text-primary font-mono text-sm tracking-widest uppercase mb-4 block">
-                                // 06 Contact
+                                Contact
                             </motion.span>
                             <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground mb-6">
-                                Let's build something <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/50">extraordinary.</span>
+                                Let&apos;s build something <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/50">extraordinary.</span>
                             </motion.h2>
                             <motion.p variants={itemVariants} className="text-muted-foreground text-lg leading-relaxed font-inter max-w-md">
                                 Whether you have a project in mind, want to collaborate, or just want to say hi, my inbox is always open.
@@ -119,7 +119,7 @@ export default function Contact() {
 
                         <form
                             ref={formRef}
-                            className="relative bg-background/40 backdrop-blur-xl border border-primary/10 p-8 md:p-10 rounded-3xl shadow-2xl flex flex-col gap-6 z-10"
+                            className="relative bg-background/40 backdrop-blur-xl border border-primary/10 p-4 sm:p-8 md:p-10 rounded-3xl shadow-2xl flex flex-col gap-6 z-10"
                             onSubmit={(e) => e.preventDefault()}
                         >
                             <div className="flex flex-col space-y-2">

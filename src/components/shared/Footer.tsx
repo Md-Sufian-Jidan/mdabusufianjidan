@@ -1,40 +1,21 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Github, Linkedin, Mail, Code2, ArrowUpRight } from "lucide-react";
+import { Github, Linkedin, Mail, Code2, ArrowUpRight, ChevronUp } from "lucide-react";
+import { navLinks, socialLinks } from "@/data/public/data";
+import { getIconComponent } from "./iconMapper";
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
 }
 
-const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "#about", label: "About" },
-    { href: "#projects", label: "Projects" },
-    { href: "#experience", label: "Experience" },
-    { href: "#contact", label: "Contact" },
-];
-
-const socialLinks = [
-    {
-        href: "https://github.com/Md-Sufian-Jidan",
-        icon: Github,
-        label: "GitHub",
-    },
-    {
-        href: "https://www.linkedin.com/in/md-abu-sufian-jidan/",
-        icon: Linkedin,
-        label: "LinkedIn",
-    },
-    { href: "mailto:jidanjiyay03@gmail.com", icon: Mail, label: "Email" },
-];
-
 export function Footer() {
     const footerRef = useRef<HTMLDivElement>(null);
+    const [showScrollTop, setShowScrollTop] = useState(false);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -69,10 +50,27 @@ export function Footer() {
             );
         }, footerRef);
 
-        return () => ctx.revert();
+        // Show/hide scroll to top button based on scroll position
+        const handleScroll = () => {
+            setShowScrollTop(window.scrollY > 300);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            ctx.revert();
+            window.removeEventListener("scroll", handleScroll);
+        };
     }, []);
 
-    const containerVariants = {
+    // Scroll to top function
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    };
+
+    const containerVariants: Variants = {
         hidden: { opacity: 0 },
         visible: {
             opacity: 1,
@@ -80,9 +78,9 @@ export function Footer() {
         }
     };
 
-    const itemVariants = {
+    const itemVariants: Variants = {
         hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] as any } }
+        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }
     };
 
     return (
@@ -94,17 +92,17 @@ export function Footer() {
             <div className="footer-glow absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-primary/10 blur-[100px] pointer-events-none rounded-t-full" />
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] z-0 pointer-events-none" />
 
-            <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10 footer-content">
+            <div className="container mx-auto px-6 lg:px-10 relative z-10 footer-content">
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8 mb-16">
 
                     {/* Brand Details */}
                     <div className="md:col-span-5 flex flex-col items-start">
                         <Link href="/" className="group flex items-center gap-3 mb-6 relative">
-                            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 flex items-center justify-center group-hover:border-primary/60 group-hover:shadow-[0_0_15px_rgba(var(--primary),0.5)] transition-all duration-300">
-                                <Code2 className="w-5 h-5 text-primary" />
+                            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center transition-transform group-hover:rotate-12 shadow-[0_0_15px_rgba(34,197,94,0.2)]">
+                                <Code2 className="text-primary-foreground fill-current" />
                             </div>
-                            <span className="font-bold text-2xl tracking-tight text-foreground group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-foreground group-hover:to-primary transition-all">
-                                Jidan.
+                            <span className="font-bold text-xl tracking-tight">
+                                Sufian<span className="text-primary">.</span>
                             </span>
                         </Link>
                         <p className="text-muted-foreground leading-relaxed font-inter max-w-sm mb-6">
@@ -144,10 +142,10 @@ export function Footer() {
                                     >
                                         <span className="relative overflow-hidden">
                                             <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">
-                                                {link.label}
+                                                {link.title}
                                             </span>
                                             <span className="absolute inset-0 inline-block translate-y-full transition-transform duration-300 group-hover:translate-y-0 text-primary">
-                                                {link.label}
+                                                {link.title}
                                             </span>
                                         </span>
                                     </Link>
@@ -169,22 +167,24 @@ export function Footer() {
                             viewport={{ once: true }}
                             className="flex flex-col gap-4 font-inter"
                         >
-                            {socialLinks.map((link) => (
-                                <motion.a
-                                    variants={itemVariants}
-                                    key={link.href}
-                                    href={link.href}
-                                    target={link.href.startsWith("mailto") ? "_self" : "_blank"}
-                                    rel="noopener noreferrer"
-                                    className="group flex items-center justify-between text-muted-foreground hover:text-foreground transition-colors p-3 -mx-3 rounded-lg hover:bg-secondary/10"
-                                >
-                                    <div className="flex items-center gap-3">
-                                        <link.icon className="w-5 h-5 group-hover:text-primary transition-colors" />
-                                        <span>{link.label}</span>
-                                    </div>
-                                    <ArrowUpRight className="w-4 h-4 opacity-0 -translate-x-2 translate-y-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 transition-all text-primary" />
-                                </motion.a>
-                            ))}
+                            {socialLinks.map((link) => {
+                                return (
+                                    <motion.a
+                                        variants={itemVariants}
+                                        key={link.href}
+                                        href={link.href}
+                                        target={link.href.startsWith("mailto") ? "_self" : "_blank"}
+                                        rel="noopener noreferrer"
+                                        className="group flex items-center justify-between text-muted-foreground hover:text-foreground transition-colors p-3 -mx-3 rounded-lg hover:bg-secondary/10"
+                                    >
+                                        <div className="flex items-center gap-3">
+                                            <link.icon className="w-5 h-5 group-hover:text-primary transition-colors" />
+                                            <span>{link.title}</span>
+                                        </div>
+                                        <ArrowUpRight className="w-4 h-4 opacity-0 -translate-x-2 translate-y-2 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0 transition-all text-primary" />
+                                    </motion.a>
+                                )
+                            })}
                         </motion.div>
                     </div>
                 </div>
@@ -205,6 +205,24 @@ export function Footer() {
                     </p>
                 </div>
             </div>
+
+            {/* Scroll to Top Button */}
+            <motion.button
+                onClick={scrollToTop}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ 
+                    opacity: showScrollTop ? 1 : 0, 
+                    scale: showScrollTop ? 1 : 0.8,
+                    y: showScrollTop ? 0 : 20
+                }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className={`fixed bottom-8 right-8 z-50 w-12 h-12 rounded-full bg-primary text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
+                    showScrollTop ? 'pointer-events-auto' : 'pointer-events-none'
+                }`}
+                aria-label="Scroll to top"
+            >
+                <ChevronUp className="w-6 h-6 mx-auto" />
+            </motion.button>
         </footer>
     );
 }

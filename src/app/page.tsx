@@ -9,7 +9,7 @@ import Contact from "@/components/modules/home/Contact";
 
 export default function Home() {
   return (
-    <main className="w-full">
+    <main>
       <Hero />
       <About />
       <Technologies />

@@ -1,3 +1,5 @@
+import { IconType } from "react-icons/lib";
+
 export interface TechStack {
     Frontend: {
         title: string;
@@ -31,6 +33,7 @@ export interface Experience {
     company: string;
     duration: string;
     description: string;
+    responsibilities: string[];
     skills: string[];
 }
 
@@ -45,11 +48,34 @@ export interface BlogPost {
 }
 
 export interface Project {
-    slug: string;
     title: string;
-    date: string;
-    readingTime: string;
-    tags: string[];
-    excerpt: string;
-    content: string;
+    description: string;
+    image: string;
+    features: string[];
+    tech: string[];
+    live: string;
+    client: string;
+    server: string;
+    category: string;
+}
+
+export interface NavLink {
+    title: string;
+    href: string;
+    icon: string;
+}
+
+export interface SocialLink {
+    title: string;
+    href: string;
+    icon: IconType;
+}
+
+export default interface Education {
+    id: number;
+    degree: string;
+    institution: string;
+    duration: string;
+    description: string;
+    skills: string[];
 }

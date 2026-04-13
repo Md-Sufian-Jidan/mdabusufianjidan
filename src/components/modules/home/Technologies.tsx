@@ -1,135 +1,84 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Badge } from "@/components/ui/badge";
-import { HoverEffect } from "@/components/ui/card-hover-effect";
 import { TECH_STACK } from "@/data/public/data";
-import { Cpu } from "lucide-react";
-
-// Register ScrollTrigger
-if (typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
-}
+import { cn } from "@/lib/utils";
 
 export default function Technologies() {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const isInView = useInView(containerRef, { once: true, margin: "-100px" });
-
-    useEffect(() => {
-        let ctx = gsap.context(() => {
-            // Parallax the background glowing orbs 
-            gsap.to(".tech-orb", {
-                y: -150,
-                ease: "none",
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: "top bottom",
-                    end: "bottom top",
-                    scrub: 1.5,
-                }
-            });
-
-            // 3D Tilt effect on the categories wrappers as you scroll
-            gsap.fromTo(".tech-category", 
-                { opacity: 0, rotateX: 15, y: 50 },
-                { 
-                    opacity: 1, 
-                    rotateX: 0, 
-                    y: 0, 
-                    duration: 1.2, 
-                    stagger: 0.3,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: containerRef.current,
-                        start: "top 75%",
-                    }
-                }
-            );
-        }, containerRef);
-
-        return () => ctx.revert();
-    }, []);
+    const ref = useRef<HTMLDivElement>(null);
+    const isInView = useInView(ref, { once: true, margin: "-100px" });
 
     return (
-        <section id="tech" className="relative py-24 lg:py-32 bg-background overflow-hidden" ref={containerRef}>
-            {/* ── Architectural Blueprint Background ── */}
-            {/* Grid */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none z-0"
-                style={{
-                    backgroundImage: `radial-gradient(var(--primary) 1.5px, transparent 1.5px)`,
-                    backgroundSize: '40px 40px',
-                    maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)'
-                }}
-            />
-            {/* Vertical glowing pillars */}
-            <div className="absolute left-[10%] top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-primary/10 to-transparent pointer-events-none" />
-            <div className="absolute right-[10%] top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-primary/10 to-transparent pointer-events-none" />
+        <section
+            id="technologies"
+            ref={ref}
+            className="relative py-10 md:py-20 px-0 md:px-12 overflow-hidden"
+        >
+            {/* Background Glow */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-xl pointer-events-none" />
 
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
-
-                {/* Section Header */}
-                <div className="text-center mb-16 lg:mb-24 relative">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                        transition={{ duration: 0.5, ease: "easeOut" }}
-                        className="inline-flex items-center justify-center p-[1px] rounded-full bg-gradient-to-r from-transparent via-primary/50 to-transparent mb-6"
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                {/* HEADER */}
+                <div className="text-center mb-16 sm:mb-20">
+                    <motion.p
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={isInView ? { opacity: 1, y: 0 } : {}}
+                        className="text-xs uppercase tracking-[0.3em] text-primary mb-4"
                     >
-                        <Badge variant="outline" className="px-5 py-1.5 border-primary/20 text-primary bg-background/50 backdrop-blur-md uppercase tracking-[0.3em] text-[10px] sm:text-xs font-bold rounded-full">
-                            <Cpu size={14} className="mr-2 inline-block opacity-70" />
-                            ENGINEERING / 02
-                        </Badge>
-                    </motion.div>
+                        Tech Stack
+                    </motion.p>
 
                     <motion.h2
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={isInView ? { opacity: 1, y: 0 } : {}}
-                        transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-                        className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-foreground tracking-tight"
-                    >
-                        The Tech <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60 italic">Foundation</span>
-                    </motion.h2>
-
-                    <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         animate={isInView ? { opacity: 1, y: 0 } : {}}
-                         transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-                        className="mt-6 text-muted-foreground text-base sm:text-lg font-inter max-w-2xl mx-auto"
+                        transition={{ duration: 0.6 }}
+                        className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight"
                     >
-                        A curated stack designed for structural integrity, blazing-fast performance, and global scalability.
-                    </motion.p>
+                        Technologies I <span className="italic text-primary">Work With</span>
+                    </motion.h2>
                 </div>
 
-                {/* Tech Grid Categorized */}
-                <div className="space-y-20 lg:space-y-28 perspective-[2000px]">
-                    {Object.entries(TECH_STACK).map(([category, items], catIdx) => (
+                {/* GRID */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {Object.entries(TECH_STACK).map(([category, items], idx) => (
                         <motion.div
                             key={category}
-                            initial={{ opacity: 0, y: 40 }}
+                            initial={{ opacity: 0, y: 30 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
-                            transition={{ duration: 0.8, delay: 0.2 + (catIdx * 0.15), ease: "easeOut" }}
-                            className="relative tech-category"
+                            transition={{ delay: idx * 0.1, duration: 0.5 }}
+                            className="group relative rounded-xl border border-white/10 bg-background/60 backdrop-blur-xl p-6 sm:p-8 hover:border-primary/30 transition-all duration-500 overflow-hidden"
                         >
-                            {/* Decorative Category Header */}
-                            <div className="flex items-center gap-4 mb-6 sm:mb-10 px-2">
-                                <div className="flex flex-col items-center justify-center">
-                                     <span className="text-xs font-black uppercase tracking-widest text-primary/40 font-mono">0{catIdx + 1}</span>
-                                </div>
-                                <h3 className="text-2xl sm:text-3xl font-serif font-bold text-foreground tracking-tight">{category}</h3>
-                                <div className="h-[1px] flex-1 bg-gradient-to-r from-primary/20 to-transparent ml-4" />
+                            {/* Hover Glow */}
+                            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-primary/10 via-transparent to-transparent pointer-events-none" />
+
+                            {/* Category Title */}
+                            <h3 className="text-lg sm:text-xl font-semibold mb-6 text-foreground">
+                                {category}
+                            </h3>
+
+                            {/* ITEMS */}
+                            <div className="flex flex-wrap gap-2">
+                                {items.map((tech: any, i: number) => (
+                                    <motion.div
+                                        key={i}
+                                        whileHover={{ y: -4 }}
+                                        className={cn(
+                                            "px-3 py-1.5 text-xs sm:text-sm rounded-xl border border-primary/10 bg-primary/5 text-muted-foreground",
+                                            "hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all duration-300 cursor-default"
+                                        )}
+                                    >
+                                        {tech.title || tech.name}
+                                    </motion.div>
+                                ))}
                             </div>
 
-                            <HoverEffect items={items} />
+                            {/* Decorative Line */}
+                            <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-primary/40 to-transparent opacity-0 group-hover:opacity-100 transition" />
                         </motion.div>
                     ))}
                 </div>
             </div>
-            
-            {/* Ambient Background Glow */}
-            <div className="tech-orb absolute top-1/2 left-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
         </section>
     );
 }

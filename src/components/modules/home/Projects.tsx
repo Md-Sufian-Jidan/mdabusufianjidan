@@ -22,8 +22,8 @@ const Projects = () => {
           );
 
     return (
-        <section id="projects" className='relative py-24 lg:py-32 px-6 md:px-12 lg:px-24 bg-background overflow-hidden'>
-            <div className="container mx-auto">
+        <section id="projects" className='relative py-10 md:py-20 px-0 md:px-12 bg-background overflow-hidden'>
+            <div className="container mx-auto px-6">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between md:items-end mb-16 gap-8">
                     <motion.div
@@ -59,7 +59,7 @@ const Projects = () => {
                 </div>
 
                 {/* Projects Grid */}
-                <motion.div layout className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+                <motion.div layout className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     <AnimatePresence mode='popLayout'>
                         {filteredProjects.map((project, index) => (
                             <ProjectCard
