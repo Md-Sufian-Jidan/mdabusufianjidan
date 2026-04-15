@@ -52,6 +52,7 @@ export default function Hero() {
     return (
         <section
             ref={heroRef}
+            id="home"
             className="relative w-full min-h-screen flex flex-col justify-center items-center py-10 md:py-20 px-0 md:px-12 overflow-hidden"
         >
             {/* Minimal Grid Background */}

@@ -13,6 +13,24 @@ export interface TechStack {
         link: string;
         icon: string;
     }[];
+    Databases: {
+        title: string;
+        description: string;
+        link: string;
+        icon: string;
+    }[];
+    CloudDevOps: {
+        title: string;
+        description: string;
+        link: string;
+        icon: string;
+    }[];
+    Tools: {
+        title: string;
+        description: string;
+        link: string;
+        icon: string;
+    }[];
     Infrastructure: {
         title: string;
         description: string;

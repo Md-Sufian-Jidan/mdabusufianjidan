@@ -3,24 +3,37 @@ import { FaWhatsapp, FaEnvelope, FaLinkedin, FaGithub } from 'react-icons/fa';
 
 export const TECH_STACK: TechStack = {
     Frontend: [
-        { title: "Next.js", description: "App Router, CSR, SSR, ISR, SSG, Optimization", link: "#", icon: "Layout" },
-        { title: "React", description: "Hooks, Context API, Performance", link: "#", icon: "Code2" },
-        { title: "Tailwind CSS", description: "v4, OKLCH, Design Systems", link: "#", icon: "Layers" },
-        { title: "Shadcn/UI", description: "UI Components", link: "#", icon: "Layers" },
-        { title: "Framer Motion", description: "Complex Orchestration", link: "#", icon: "Cpu" },
+        { title: "HTML", description: "Semantic Markup Language", link: "#", icon: "Layout" },
+        { title: "CSS", description: "Styling & Responsive Design", link: "#", icon: "Layout" },
+        { title: "JavaScript", description: "Dynamic Client-Side Scripting", link: "#", icon: "Layout" },
+        { title: "TypeScript", description: "Typed Superset of JavaScript", link: "#", icon: "Layout" },
+        { title: "Next.js", description: "React Framework with App Router, SSR, ISR, SSG", link: "#", icon: "Layout" },
+        { title: "React", description: "Component-Based UI Library with Hooks & Context", link: "#", icon: "Code2" },
+        { title: "Tailwind CSS", description: "Utility-First CSS Framework", link: "#", icon: "Layers" },
+        { title: "Shadcn/UI", description: "Accessible UI Components", link: "#", icon: "Layers" },
     ],
     Backend: [
-        { title: "Node.js", description: "Event-driven Runtime", link: "#", icon: "Terminal" },
-        { title: "Express", description: "Middleware & Routing", link: "#", icon: "Code2" },
-        { title: "MongoDB", description: "NoSQL Database", link: "#", icon: "Database" },
-        { title: "PostgreSQL", description: "Relational Database", link: "#", icon: "Database" },
-        { title: "Prisma", description: "Type-safe ORM Layer", link: "#", icon: "Layers" },
+        { title: "Node.js", description: "Event-Driven JavaScript Runtime", link: "#", icon: "Terminal" },
+        { title: "Express", description: "Web Framework for Node.js", link: "#", icon: "Code2" },
+        { title: "Go", description: "Concurrent Systems Programming Language", link: "#", icon: "Code2" },
+        { title: "Prisma", description: "Type-Safe Database ORM", link: "#", icon: "Layers" },
+    ],
+    Databases: [
+        { title: "MongoDB", description: "NoSQL Document Database", link: "#", icon: "Database" },
+        { title: "PostgreSQL", description: "Advanced Relational Database", link: "#", icon: "Database" },
+    ],
+    CloudDevOps: [
+        { title: "Docker", description: "Containerization Platform", link: "#", icon: "Cpu" },
     ],
     Infrastructure: [
-        { title: "MERN", description: "Full-Stack Architecture", link: "#", icon: "Cpu" },
-        { title: "PERN", description: "Full-Stack Architecture", link: "#", icon: "Cpu" },
-        { title: "Git", description: "Version Control Systems", link: "#", icon: "Terminal" },
-        { title: "Vercel", description: "CI/CD & Deployment", link: "#", icon: "Globe" },
+        { title: "MERN", description: "MongoDB, Express, React, Node.js Stack", link: "#", icon: "Cpu" },
+        { title: "PERN", description: "PostgreSQL, Express, React, Node.js Stack", link: "#", icon: "Cpu" },
+    ],
+    Tools: [
+        { title: "Git", description: "Distributed Version Control System", link: "#", icon: "Terminal" },
+        { title: "GitHub", description: "Code Hosting & Collaboration Platform", link: "#", icon: "Terminal" },
+        { title: "VS Code", description: "Integrated Development Environment", link: "#", icon: "Terminal" },
+        { title: "Vercel", description: "Frontend Deployment & Hosting", link: "#", icon: "Globe" },
     ]
 };
 
@@ -98,14 +111,16 @@ export const EDUCATION: Education[] = [
 
 export const PROJECTS: Project[] = [
     {
-        title: "Cinetube",
+        title: "CINETUBE",
         description:
-            "CineTube is a modern, full-featured movie and series platform built for performance, security, and a seamless user experience. Browse a rich media library, purchase content, write reviews, and manage everything through a powerful admin dashboard.",
+            "CINETUBE is a modern, full-featured movie and series platform built for performance, security, and a seamless user experience. Browse a rich media library, purchase content, write reviews, and manage everything through a powerful admin dashboard.",
         image: "https://i.ibb.co/fzyLjfBP/cinetube.png",
         features: [
-            "Advanced authentication and authorization",
-            "Rate limiting and caching",
-            "Swagger API documentation"
+            "Built a full-stack media platform with secure authentication and role-based access control",
+            "Developed dynamic media browsing with search, filtering, and detailed content pages",
+            "Developed an admin dashboard to manage users, media, and platform analytics",
+            "Implemented interactive review and rating system with moderation support",
+            "Ensured data validation and security using Zod and Prisma"
         ],
         tech: [
             "Next.js", "React.js", "Tailwind CSS", "Shadcn", "PostgreSQL", "Prisma", "Node.js", "Express", "PostgreSQL", "Cors", "Dotenv"
@@ -116,14 +131,14 @@ export const PROJECTS: Project[] = [
         category: "Full-Stack"
     },
     {
-        title: "Foodie",
+        title: "MEALMATE",
         description:
-            "FOODIE is a production-ready, multi-vendor food delivery backend — built with Express, Prisma, and PostgreSQL. Secure, scalable, and structured for real-world use.",
+            "MEALMATE is a production-ready, multi-vendor food delivery backend — built with Express, Prisma, and PostgreSQL. Secure, scalable, and structured for real-world use.",
         image: "https://i.ibb.co/99pqNzY5/mealmate.png",
         features: [
-            "Advanced authentication and authorization",
-            "Rate limiting and caching",
-            "Swagger API documentation"
+            "Developed a scalable multi-vendor food delivery system with role-based access (Admin, Provider, Customer)",
+            "Implemented full order lifecycle management with real-time status updates (Pending → Delivered)",
+            "Built RESTful APIs with secure authentication, data validation, and optimized database queries using Prisma & PostgreSQL"
         ],
         tech: [
             "Next.js", "React.js", "Tailwind CSS", "Shadcn", "PostgreSQL", "Prisma", "Node.js", "Express", "PostgreSQL", "Cors", "Dotenv"
@@ -209,7 +224,7 @@ export const PROJECTS: Project[] = [
     {
         title: "The Pixel Verse",
         description:
-            "Real-time cryptocurrency tracking dashboard with interactive charts and portfolio management.",
+            "Photography website for professional bd clients with portfolio, and contact features.",
         image: "https://i.ibb.co/CpvBSP1X/pixelperfect.png",
         features: [
             "Live price updates via WebSockets",
@@ -217,7 +232,7 @@ export const PROJECTS: Project[] = [
             "Personal portfolio tracking"
         ],
         tech: [
-            "React", "Redux", "Chart.js", "Tailwind CSS", "CoinGecko API"
+            "Next.js", "ReactJs", "TypeScript", "Tailwind CSS", "Shadcn", "Framer Motion"
         ],
         live: "https://apexstudio-hazel.vercel.app",
         client: "https://github.com/Md-Sufian-Jidan/imran-vai",
@@ -250,7 +265,7 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const navLinks: NavLink[] = [
-    { title: "Home", href: "/", icon: "Home" },
+    { title: "Home", href: "#home", icon: "Home" },
     { title: "About", href: "#about", icon: "User" },
     { title: "Technologies", href: "#technologies", icon: "Code2" },
     { title: "Experience", href: "#experience", icon: "Briefcase" },

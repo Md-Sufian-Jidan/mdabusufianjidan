@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
             userAgent: "*",
             allow: "/",
         },
-        sitemap: "https://abu-sufian-dev.vercel.app/sitemap.xml",
+        sitemap: "https://mdabusufianjidan.vercel.app/sitemap.xml",
     };
 }

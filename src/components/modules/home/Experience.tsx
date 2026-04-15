@@ -100,12 +100,12 @@ export default function Experience() {
                                 </div>
 
                                 {/* Description */}
-                                <p className="text-muted-foreground text-base leading-relaxed mb-6 max-w-2xl font-inter">
+                                <p className="text-muted-foreground text-base leading-relaxed mb-6 max-w-5xl font-inter">
                                     {exp.description}
                                 </p>
 
                                 {/* Responsibilities */}
-                                <ul className="space-y-2 mb-6 max-w-2xl">
+                                <ul className="space-y-2 mb-6 max-w-5xl">
                                     {exp.responsibilities.map((item, i) => (
                                         <li
                                             key={i}

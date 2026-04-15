@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Code2, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -11,6 +12,7 @@ import { ModeToggle } from "./ModeToggle";
 import { getIconComponent } from "./iconMapper";
 
 const Navbar = () => {
+    const router = useRouter();
     const [open, setOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState("home");
@@ -69,6 +71,7 @@ const Navbar = () => {
                             <Link
                                 key={item.title}
                                 href={item.href}
+                                onClick={() => router.push(item.href)}
                                 className={cn(
                                     "relative flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300",
                                     isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
@@ -96,7 +99,7 @@ const Navbar = () => {
                         asChild
                         className="hidden lg:flex rounded-xl px-6 bg-primary hover:bg-primary/90 text-primary-foreground h-10 font-bold transition-all hover:scale-105 shadow-md shadow-primary/10"
                     >
-                        <a href="#contact">Hire Me</a>
+                        <Link href="#contact" onClick={() => router.push("#contact")}>Hire Me</Link>
                     </Button>
 
                     {/* Mobile Toggle */}
@@ -130,7 +133,7 @@ const Navbar = () => {
                                     >
                                         <Link
                                             href={link.href}
-                                            onClick={() => setOpen(false)}
+                                            onClick={() => { setOpen(false); router.push(link.href); }}
                                             className="flex items-center gap-4 py-4 text-2xl font-bold border-b border-border transition-colors hover:text-primary"
                                         >
                                             <Icon className="text-primary w-6 h-6" />
@@ -140,11 +143,11 @@ const Navbar = () => {
                                 )
                             })}
                             <Button
-                                onClick={() => setOpen(false)}
+                                onClick={() => { setOpen(false); router.push("#contact"); }}
                                 className="mt-8 w-full h-14 rounded-2xl text-lg font-bold"
                                 asChild
                             >
-                                <a href="#contact">Get a Quote</a>
+                                <Link href="#contact">Get a Quote</Link>
                             </Button>
                         </div>
                     </motion.div>

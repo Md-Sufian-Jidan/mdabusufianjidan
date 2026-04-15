@@ -68,7 +68,7 @@ const Services = () => {
                                 <Card className="service-card-levitate h-full rounded-[2rem] group relative transition-all duration-500 overflow-hidden bg-background/50 backdrop-blur-xl border border-primary/15 hover:border-primary/40 shadow-xl hover:shadow-[0_0_30px_rgba(var(--primary-rgb),0.15)] tech-card-glow">
 
                                     {/* Aceternity Style Inner Glow */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 border border-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-[2rem]" />
+                                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 border border-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none rounded-xl" />
 
                                     {/* Top Corner Cyber Accent */}
                                     <div className="absolute top-0 right-8 w-12 h-1 bg-primary/40 rounded-b-md opacity-0 group-hover:opacity-100 group-hover:shadow-[0_0_10px_rgba(var(--primary-rgb),0.8)] transition-all duration-500" />

@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { motion, Variants } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Mail, Linkedin, Github, Send } from "lucide-react";
 import Link from "next/link";
+import { FaWhatsapp } from "react-icons/fa";
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
@@ -17,7 +18,6 @@ export default function Contact() {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // Parallax effect on the form container
             gsap.fromTo(formRef.current,
                 { y: 80, opacity: 0 },
                 {
@@ -49,7 +49,7 @@ export default function Contact() {
         visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] as any }
+            transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1]}
         }
     };
 
@@ -89,14 +89,14 @@ export default function Contact() {
                         </div>
 
                         <motion.div variants={itemVariants} className="flex flex-col space-y-6 pt-4">
-                            <Link href="mailto:jidan@example.com" className="group flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors duration-300 w-fit">
+                            <Link href="mailto:jidanjiyaj03@gmail.com" className="group flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors duration-300 w-fit">
                                 <span className="p-3 bg-secondary/20 rounded-xl group-hover:bg-primary/10 group-hover:scale-110 transition-all">
                                     <Mail className="w-6 h-6" />
                                 </span>
-                                <span className="text-lg font-medium font-inter">jidan@example.com</span>
+                                <span className="text-lg font-medium font-inter">jidanjiyaj03@gmail.com</span>
                             </Link>
 
-                            <Link href="https://linkedin.com/in/yourprofile" target="_blank" className="group flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors duration-300 w-fit">
+                            <Link href="https://www.linkedin.com/in/md-abu-sufian-jidan" target="_blank" className="group flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors duration-300 w-fit">
                                 <span className="p-3 bg-secondary/20 rounded-xl group-hover:bg-primary/10 group-hover:scale-110 transition-all">
                                     <Linkedin className="w-6 h-6" />
                                 </span>
@@ -108,6 +108,12 @@ export default function Contact() {
                                     <Github className="w-6 h-6" />
                                 </span>
                                 <span className="text-lg font-medium font-inter">GitHub</span>
+                            </Link>
+                            <Link href="https://wa.me/8801906844598" target="_blank" className="group flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors duration-300 w-fit">
+                                <span className="p-3 bg-secondary/20 rounded-xl group-hover:bg-primary/10 group-hover:scale-110 transition-all">
+                                    <FaWhatsapp className="w-6 h-6" />
+                                </span>
+                                <span className="text-lg font-medium font-inter">Whatsapp</span>
                             </Link>
                         </motion.div>
                     </motion.div>
