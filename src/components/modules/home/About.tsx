@@ -83,8 +83,8 @@ export default function About() {
             </div>
 
             {/* Ambient Glowing Orbs */}
-            <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-primary/5 rounded-xl blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none bg-drift" />
-            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/10 rounded-xl blur-[100px] translate-x-1/3 -translate-y-1/3 pointer-events-none about-float" />
+            <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-primary/5 rounded-xl blur-[60px] -translate-x-1/2 -translate-y-1/2 pointer-events-none bg-drift will-change-transform" />
+            <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/10 rounded-xl blur-[50px] translate-x-1/3 -translate-y-1/3 pointer-events-none about-float will-change-transform" />
 
             <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Section Header */}
@@ -122,7 +122,7 @@ export default function About() {
 
                             {/* ✅ Next.js Optimized Image with fill */}
                             <Image
-                                src="https://i.ibb.co/FqLTCxSR/current-linkedin.png"
+                                src="/mdabusufianjidan-professional-image-22042026.avif"
                                 alt="Md Abu Sufian Jidan Professional Picture"
                                 fill
                                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw"

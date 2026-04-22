@@ -114,7 +114,7 @@ export const PROJECTS: Project[] = [
         title: "CINETUBE",
         description:
             "CINETUBE is a modern, full-featured movie and series platform built for performance, security, and a seamless user experience. Browse a rich media library, purchase content, write reviews, and manage everything through a powerful admin dashboard.",
-        image: "https://i.ibb.co/fzyLjfBP/cinetube.png",
+        image: "/projects/cinetube.webp",
         features: [
             "Built a full-stack media platform with secure authentication and role-based access control",
             "Developed dynamic media browsing with search, filtering, and detailed content pages",
@@ -134,7 +134,7 @@ export const PROJECTS: Project[] = [
         title: "MEALMATE",
         description:
             "MEALMATE is a production-ready, multi-vendor food delivery backend — built with Express, Prisma, and PostgreSQL. Secure, scalable, and structured for real-world use.",
-        image: "https://i.ibb.co/99pqNzY5/mealmate.png",
+        image: "/projects/mealmate.webp",
         features: [
             "Developed a scalable multi-vendor food delivery system with role-based access (Admin, Provider, Customer)",
             "Implemented full order lifecycle management with real-time status updates (Pending → Delivered)",
@@ -152,7 +152,7 @@ export const PROJECTS: Project[] = [
         title: "LuxeMatches",
         description:
             "Premium matchmaking platform with role-based auth, Stripe payments, dynamic filtering, and admin control.",
-        image: "https://i.ibb.co/vx9TYNmQ/luxematches.png",
+        image: "/projects/luxematches.webp",
         features: [
             "Role-based Access & Authentication: Firebase Auth + JWT protection.",
             "Stripe Payment Integration for secure contact requests.",
@@ -171,7 +171,7 @@ export const PROJECTS: Project[] = [
         title: "WorkNest",
         description:
             "Job management app with employee salary tracking, dashboards, and JWT-secured role-based access.",
-        image: "https://i.ibb.co/0RCbGQ0H/worknest.png",
+        image: "/projects/worknest.webp",
         features: [
             "Role-based dashboards: Admin, HR, Employee.",
             "Stripe integration for salary payments.",
@@ -189,7 +189,7 @@ export const PROJECTS: Project[] = [
         title: "StudySync",
         description:
             "Online assessment system with role-based feedback, leaderboards, PDF previews, and dark mode.",
-        image: "https://i.ibb.co/gbPCVRNN/studysync.png",
+        image: "/projects/studysync.webp",
         features: [
             "Admins can give marks & feedback. Users can submit assignments.",
             "PDF preview & notes on submission.",
@@ -207,7 +207,7 @@ export const PROJECTS: Project[] = [
         title: "TopOneMart",
         description:
             "E-commerce platform for various products with cart management and secure checkout.",
-        image: "https://i.ibb.co/LXQHz0TZ/toponemart.png",
+        image: "/projects/toponemart.webp",
         features: [
             "Product catalog with advanced search and filtering",
             "Shopping cart and order management",
@@ -225,7 +225,7 @@ export const PROJECTS: Project[] = [
         title: "The Pixel Verse",
         description:
             "Photography website for professional bd clients with portfolio, and contact features.",
-        image: "https://i.ibb.co/CpvBSP1X/pixelperfect.png",
+        image: "/projects/pixelperfect.webp",
         features: [
             "Live price updates via WebSockets",
             "Interactive historical charts",

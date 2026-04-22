@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 const ProjectCard = ({ project, index, onView }: any) => {
     return (
@@ -17,10 +18,14 @@ const ProjectCard = ({ project, index, onView }: any) => {
             {/* Image Container */}
             <div className="relative h-64 overflow-hidden">
                 <div className="absolute inset-0 bg-primary/20 mix-blend-overlay z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <img
+                <Image
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading={index < 2 ? "eager" : "lazy"}
+                    priority={index < 2}
                 />
                 
                 {/* Category Badge */}

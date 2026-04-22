@@ -43,7 +43,7 @@ export default function Education() {
             className="relative py-10 md:py-20 px-0 md:px-12 bg-background overflow-hidden"
         >
             {/* Background Glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-xl pointer-events-none" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/10 blur-[60px] rounded-xl pointer-events-none will-change-transform" />
 
             <div className="container mx-auto px-6 lg:px-10 relative z-10">
                 {/* Section Header */}

@@ -15,16 +15,16 @@ if (typeof window !== "undefined") {
 
 export default function Hero() {
     const heroRef = useRef<HTMLDivElement>(null);
+    const parallaxTextRef = useRef<HTMLDivElement>(null);
     const textRef = useRef<HTMLDivElement>(null);
     const imageRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
             // Smooth Parallax for text and image
-            gsap.to(textRef.current, {
-                y: -30,
-                opacity: 0.8,
-                ease: "power2.inOut",
+            gsap.to(parallaxTextRef.current, {
+                y: -50,
+                ease: "power1.inOut",
                 scrollTrigger: {
                     trigger: heroRef.current,
                     start: "top top",
@@ -59,23 +59,24 @@ export default function Hero() {
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] z-0" />
 
             {/* Subtle Neon Orbs */}
-            <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[140px] pointer-events-none animate-pulse" />
-            <div className="absolute bottom-0 -right-20 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/10 blur-[120px] rounded-xl pointer-events-none" />
+            <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[80px] pointer-events-none animate-pulse [contain:strict] will-change-[transform,opacity]" />
+            <div className="absolute bottom-0 -right-20 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[60px] pointer-events-none [contain:strict] will-change-[transform,opacity]" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/10 blur-[60px] rounded-xl pointer-events-none [contain:strict] will-change-[transform,opacity]" />
 
             <div className="container mx-auto px-6 relative z-10">
                 <div className="flex flex-col-reverse lg:flex-row items-center justify-between gap-8 lg:gap-16">
 
                     {/* Left: Text Content */}
-                    <motion.div
-                        ref={textRef}
-                        initial={{ opacity: 1, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 1, ease: [0.19, 1, 0.22, 1] }}
-                        className="w-full lg:w-3/5 flex flex-col items-center lg:items-start text-center lg:text-left"
-                    >
+                    <div ref={parallaxTextRef} className="w-full lg:w-3/5">
+                        <motion.div
+                            ref={textRef}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1.2, ease: [0.19, 1, 0.22, 1], delay: 0.2 }}
+                            className="flex flex-col items-center lg:items-start text-center lg:text-left"
+                        >
                         {/* Status Badge */}
-                        <div className="inline-flex items-center gap-3 mb-8 px-2 md:px-5 py-2 rounded-full border border-primary/10 bg-primary/5 backdrop-blur-xl text-primary text-xs font-bold uppercase tracking-[0.3em]">
+                        <div className="inline-flex items-center gap-3 mb-8 px-2 md:px-5 py-2 rounded-full border border-primary/10 bg-primary/5 backdrop-blur-xl text-primary text-xs font-bold uppercase tracking-[0.3em] min-h-[40px]">
                             <span className="relative flex h-2 w-2">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
@@ -86,10 +87,10 @@ export default function Hero() {
 
                         <h1 className="text-5xl md:text-7xl font-serif font-bold text-foreground leading-[1.05] tracking-tight mb-8">
                             <span className="text-2xl md:text-4xl block font-sans font-light text-muted-foreground italic mb-2">Hello, I&apos;m</span>
-                            <div className="min-h-[1.2em] italic">
+                            <div className="min-h-[1.2em] italic overflow-hidden">
                                 <Typewriter
                                     options={{
-                                        strings: ["Md Abu Sufian Jidan", "Junior Web Developer"],
+                                        strings: ["Md Abu Sufian Jidan", "Full Stack Developer, MERN Stak Developer", "Junior Software Engineer"],
                                         autoStart: true,
                                         loop: true,
                                         wrapperClassName: "text-primary",
@@ -101,7 +102,7 @@ export default function Hero() {
 
                         <p className="font-sans text-muted-foreground text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
                             <span className="text-foreground font-bold">
-                                Junior Web Developer </span>building scalable and high-performance web applications.
+                                Full Stack Developer </span>building scalable and high-performance web applications.
                             Specialized in modern full-stack development with JavaScript, TypeScript, React, Next.js, Node.js, Express.js, PostgreSQL, Prisma and databases like PostgreSQL & MongoDB.
                             Focused on clean architecture, performance, and real-world solutions.
                         </p>
@@ -130,6 +131,7 @@ export default function Hero() {
                             </Button>
                         </div>
                     </motion.div>
+                </div>
 
                     {/* Right: Visual Element - IMPROVED RESPONSIVE IMAGE */}
                     <motion.div
@@ -151,7 +153,7 @@ export default function Hero() {
                                 <div className="relative w-full h-full rounded-full overflow-hidden">
                                     {/* ✅ Optimized Next.js Image with proper sizing */}
                                     <Image
-                                        src="https://i.ibb.co/FqLTCxSR/current-linkedin.png"
+                                        src="/mdabusufianjidan-professional-image-22042026.avif"
                                         alt="Md Abu Sufian Jidan Professional Picture"
                                         fill
                                         sizes="(max-width: 380px) 280px, (max-width: 640px) 320px, (max-width: 768px) 360px, (max-width: 1024px) 400px, (max-width: 1280px) 420px, 480px"

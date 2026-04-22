@@ -20,6 +20,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://mdabusufianjidan.vercel.app"),
   title: {
     default: "Md Abu Sufian Jidan | Full Stack Developer",
     template: "%s | Abu Sufian Jidan",
@@ -55,7 +56,7 @@ export const metadata: Metadata = {
       "Junior Full Stack Developer specializing in React, Next.js, JavaScript, TypeScript, Node.js, Express.js, PostgreSQL, MongoDB, Prisma and more. Building scalable web applications and open to remote roles in the US and Europe.",
     images: [
       {
-        url: "https://i.ibb.co/FqLTCxSR/current-linkedin.png",
+        url: "/mdabusufianjidan-professional-image-22042026.avif",
         width: 1200,
         height: 630,
         alt: "Md Abu Sufian Jidan - Full Stack Developer",
@@ -67,13 +68,16 @@ export const metadata: Metadata = {
     title: "Md Abu Sufian Jidan | Full Stack Developer",
     description:
       "Junior Full Stack Developer specializing in React, Next.js, JavaScript, TypeScript, Node.js, Express.js, PostgreSQL, MongoDB, Prisma and more. Building scalable web applications and open to remote roles in the US and Europe.",
-    images: ["https://i.ibb.co/FqLTCxSR/current-linkedin.png"],
+    images: ["/mdabusufianjidan-professional-image-22042026.avif"],
   },
   robots: {
     index: true,
     follow: true,
     googleBot: { index: true, follow: true },
   },
+  alternates: {
+    canonical: "https://mdabusufianjidan.vercel.app"
+  }
 };
 
 export default function RootLayout({
@@ -94,12 +98,12 @@ export default function RootLayout({
               "@type": "Person",
               name: "Md Abu Sufian Jidan",
               url: "https://mdabusufianjidan.vercel.app",
-              image: "https://i.ibb.co/FqLTCxSR/current-linkedin.png",
+              image: "https://mdabusufianjidan.vercel.app/mdabusufianjidan-professional-image-22042026.avif",
               sameAs: [
                 "https://github.com/Md-Sufian-Jidan",
                 "https://www.linkedin.com/in/md-sufian-jidan/"
               ],
-              jobTitle: "Full Stack Developer",
+              jobTitle: "Full Stack Developer | Software Engineer",
             }),
           }}
         />
