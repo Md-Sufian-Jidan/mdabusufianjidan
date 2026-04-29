@@ -6,6 +6,8 @@ import SmoothScrollProvider from "@/components/shared/SmoothScrollProvider";
 import { Footer } from "@/components/shared/Footer";
 import Navbar from "@/components/shared/Navbar";
 import "./globals.css";
+import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next"
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -89,7 +91,22 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${jakarta.variable} ${inter.variable} font-sans antialiased selection:bg-primary selection:text-primary-foreground`}
+        suppressHydrationWarning
       >
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}');
+  `}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -123,6 +140,7 @@ export default function RootLayout({
             <Footer />
           </SmoothScrollProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

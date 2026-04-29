@@ -75,63 +75,75 @@ export default function Hero() {
                             transition={{ duration: 1.2, ease: [0.19, 1, 0.22, 1], delay: 0.2 }}
                             className="flex flex-col items-center lg:items-start text-center lg:text-left"
                         >
-                        {/* Status Badge */}
-                        <div className="inline-flex items-center gap-3 mb-8 px-2 md:px-5 py-2 rounded-full border border-primary/10 bg-primary/5 backdrop-blur-xl text-primary text-xs font-bold uppercase tracking-[0.3em] min-h-[40px]">
-                            <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
-                            </span>
-                            <Sparkles size={12} className="opacity-70" />
-                            Open for Collaborations
-                        </div>
-
-                        <h1 className="text-5xl md:text-7xl font-serif font-bold text-foreground leading-[1.05] tracking-tight mb-8">
-                            <span className="text-2xl md:text-4xl block font-sans font-light text-muted-foreground italic mb-2">Hello, I&apos;m</span>
-                            <div className="min-h-[1.2em] italic overflow-hidden">
-                                <Typewriter
-                                    options={{
-                                        strings: ["Md Abu Sufian Jidan", "Full Stack Developer, MERN Stak Developer", "Junior Software Engineer"],
-                                        autoStart: true,
-                                        loop: true,
-                                        wrapperClassName: "text-primary",
-                                        cursorClassName: "text-primary/30"
-                                    }}
-                                />
+                            {/* Status Badge */}
+                            <div className="inline-flex items-center gap-3 mb-8 px-2 md:px-5 py-2 rounded-full border border-primary/10 bg-primary/5 backdrop-blur-xl text-primary text-xs font-bold uppercase tracking-[0.3em] min-h-[40px]">
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+                                </span>
+                                <Sparkles size={12} className="opacity-70" />
+                                Open for Collaborations
                             </div>
-                        </h1>
 
-                        <p className="font-sans text-muted-foreground text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
-                            <span className="text-foreground font-bold">
-                                Full Stack Developer </span>building scalable and high-performance web applications.
-                            Specialized in modern full-stack development with JavaScript, TypeScript, React, Next.js, Node.js, Express.js, PostgreSQL, Prisma and databases like PostgreSQL & MongoDB.
-                            Focused on clean architecture, performance, and real-world solutions.
-                        </p>
+                            <h1 className="text-5xl md:text-7xl font-serif font-bold text-foreground leading-[1.05] tracking-tight mb-8">
+                                <span className="text-2xl md:text-4xl block font-sans font-light text-muted-foreground italic mb-2">Hello, I&apos;m</span>
+                                <div className="min-h-[1.2em] italic overflow-hidden">
+                                    <Typewriter
+                                        options={{
+                                            strings: ["Md Abu Sufian Jidan", "Full Stack Developer", "MERN Stack Developer", "Junior Software Engineer"],
+                                            autoStart: true,
+                                            loop: true,
+                                            wrapperClassName: "text-primary",
+                                            cursorClassName: "text-primary/30"
+                                        }}
+                                    />
+                                </div>
+                            </h1>
 
-                        {/* CTA Buttons */}
-                        <div className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto">
-                            <Button
-                                size="lg"
-                                className="w-full sm:w-auto h-14 px-10 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-base transition-all duration-300 hover:shadow-[0_20px_40px_-15px_rgba(var(--primary),0.4)]"
-                                asChild
-                            >
-                                <a href="#projects">
-                                    Browse Work <ArrowRight className="ml-2 w-5 h-5" />
-                                </a>
-                            </Button>
+                            <p className="font-sans text-muted-foreground text-base md:text-lg leading-relaxed mb-8 max-w-2xl">
+                                <span className="text-foreground font-bold">
+                                    Full Stack Developer </span>building scalable and high-performance web applications.
+                                Specialized in modern full-stack development with JavaScript, TypeScript, React, Next.js, Node.js, Express.js, PostgreSQL, Prisma and databases like PostgreSQL & MongoDB.
+                                Focused on clean architecture, performance, and real-world solutions.
+                            </p>
 
-                            <Button
-                                variant="ghost"
-                                size="lg"
-                                className="w-full sm:w-auto h-14 px-10 rounded-xl border border-primary/10 hover:border-primary hover:bg-primary/5 font-bold text-base"
-                                asChild
-                            >
-                                <a href="/MDABUSUFIANJIDAN_FrontEndDeveloper_RESUME.pdf" target="_blank">
-                                    Resume <Download className="ml-2 w-5 h-5 opacity-50" />
-                                </a>
-                            </Button>
-                        </div>
-                    </motion.div>
-                </div>
+                            {/* CTA Buttons */}
+                            <div className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto">
+                                <Button
+                                    size="lg"
+                                    className="w-full sm:w-auto h-14 px-10 rounded-xl bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-base transition-all duration-300 hover:shadow-[0_20px_40px_-15px_rgba(var(--primary),0.4)]"
+                                    asChild
+                                >
+                                    <a href="#projects">
+                                        Browse Work <ArrowRight className="ml-2 w-5 h-5" />
+                                    </a>
+                                </Button>
+
+                                <Button
+                                    variant="ghost"
+                                    size="lg"
+                                    className="w-full sm:w-auto h-14 px-10 rounded-xl border border-primary/10 hover:border-primary hover:bg-primary/5 font-bold text-base"
+                                    asChild
+                                >
+                                    <a
+                                        href="/MDABUSUFIANJIDAN_FrontEndDeveloper_RESUME.pdf"
+                                        target="_blank"
+                                        onClick={() => {
+                                            const gtag = (window as any).gtag;
+                                            if (gtag) {
+                                                gtag("event", "resume_download", {
+                                                    event_category: "engagement",
+                                                    event_label: "Resume Button",
+                                                });
+                                            }
+                                        }}
+                                    >
+                                        Resume <Download className="ml-2 w-5 h-5 opacity-50" />
+                                    </a>
+                                </Button>
+                            </div>
+                        </motion.div>
+                    </div>
 
                     {/* Right: Visual Element - IMPROVED RESPONSIVE IMAGE */}
                     <motion.div
