@@ -39,8 +39,8 @@ export default function BlogHero({ blog }: { blog: IBlog }) {
             <Image 
               src={blog.author.avatar} 
               alt={blog.author.name} 
-              width={48} 
-              height={48} 
+              width={50} 
+              height={50} 
               className="rounded-full bg-secondary ring-2 ring-background shadow-sm"
             />
             <div>

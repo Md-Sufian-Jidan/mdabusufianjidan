@@ -4,9 +4,13 @@ import { useState } from "react";
 import Image from "next/image";
 import { Copy, Check, Share2, Facebook, Twitter, Linkedin } from "lucide-react";
 import { IBlog } from "@/types/blog";
+import { socialLinks } from "@/data/public/data";
+
+type SharePlatform = "twitter" | "linkedin" | "facebook" | "copy";
 
 export default function BlogContent({ blog }: { blog: IBlog }) {
   const [copiedCodeIndex, setCopiedCodeIndex] = useState<number | null>(null);
+  const [linkCopied, setLinkCopied] = useState(false);
 
   const handleCopyCode = (code: string, index: number) => {
     navigator.clipboard.writeText(code);
@@ -14,10 +18,28 @@ export default function BlogContent({ blog }: { blog: IBlog }) {
     setTimeout(() => setCopiedCodeIndex(null), 2000);
   };
 
-  const handleShare = (platform: string) => {
-    const url = typeof window !== 'undefined' ? window.location.href : '';
-    // Implement actual sharing logic here based on platform
-    window.open(url, '_blank');
+  const handleShare = async (platform: SharePlatform) => {
+    const url = window.location.href;
+
+    if (platform === "copy") {
+      await navigator.clipboard.writeText(url);
+      setLinkCopied(true);
+      setTimeout(() => setLinkCopied(false), 2000);
+      return;
+    }
+
+    await navigator.clipboard.writeText(url);
+
+    const encodedUrl = encodeURIComponent(url);
+    const encodedTitle = encodeURIComponent(blog.title);
+
+    const shareUrls: Record<Exclude<SharePlatform, "copy">, string> = {
+      twitter: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
+    };
+
+    window.open(shareUrls[platform], "_blank", "noopener,noreferrer,width=600,height=560");
   };
 
   return (
@@ -40,17 +62,17 @@ export default function BlogContent({ blog }: { blog: IBlog }) {
         {/* Left Side: Social Share (Sticky on Desktop) */}
         <div className="hidden lg:flex flex-col gap-4 sticky top-32 h-fit shrink-0">
           <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2 text-center">Share</p>
-          <button onClick={() => handleShare('twitter')} className="p-3 bg-secondary/50 hover:bg-primary/10 hover:text-primary border border-border/50 rounded-full transition-colors text-muted-foreground">
+          <button type="button" aria-label="Share on X (Twitter)" onClick={() => handleShare("twitter")} className="p-3 bg-secondary/50 hover:bg-primary/10 hover:text-primary border border-border/50 rounded-full transition-colors text-muted-foreground">
             <Twitter className="w-5 h-5" />
           </button>
-          <button onClick={() => handleShare('linkedin')} className="p-3 bg-secondary/50 hover:bg-primary/10 hover:text-primary border border-border/50 rounded-full transition-colors text-muted-foreground">
+          <button type="button" aria-label="Share on LinkedIn" onClick={() => handleShare("linkedin")} className="p-3 bg-secondary/50 hover:bg-primary/10 hover:text-primary border border-border/50 rounded-full transition-colors text-muted-foreground">
             <Linkedin className="w-5 h-5" />
           </button>
-          <button onClick={() => handleShare('facebook')} className="p-3 bg-secondary/50 hover:bg-primary/10 hover:text-primary border border-border/50 rounded-full transition-colors text-muted-foreground">
+          <button type="button" aria-label="Share on Facebook" onClick={() => handleShare("facebook")} className="p-3 bg-secondary/50 hover:bg-primary/10 hover:text-primary border border-border/50 rounded-full transition-colors text-muted-foreground">
             <Facebook className="w-5 h-5" />
           </button>
-          <button onClick={() => handleShare('copy')} className="p-3 bg-secondary/50 hover:bg-primary/10 hover:text-primary border border-border/50 rounded-full transition-colors text-muted-foreground">
-            <Share2 className="w-5 h-5" />
+          <button type="button" aria-label={linkCopied ? "Link copied" : "Copy article link"} onClick={() => handleShare("copy")} className="p-3 bg-secondary/50 hover:bg-primary/10 hover:text-primary border border-border/50 rounded-full transition-colors text-muted-foreground">
+            {linkCopied ? <Check className="w-5 h-5 text-green-500" /> : <Share2 className="w-5 h-5" />}
           </button>
         </div>
 
@@ -81,9 +103,9 @@ export default function BlogContent({ blog }: { blog: IBlog }) {
                           className="p-1.5 hover:bg-white/10 rounded-md transition-colors flex items-center gap-1.5"
                         >
                           {copiedCodeIndex === idx ? (
-                            <><Check className="w-3.5 h-3.5 text-green-500" /> <span className="text-green-500">Copied</span></>
+                            <><Check className="w-3.5 h-3.5 text-white" /> <span className="text-white">Copied</span></>
                           ) : (
-                            <><Copy className="w-3.5 h-3.5" /> <span>Copy</span></>
+                            <><Copy className="w-3.5 h-3.5 text-white" /> <span className="text-white">Copy</span></>
                           )}
                         </button>
                       </div>
@@ -146,17 +168,42 @@ export default function BlogContent({ blog }: { blog: IBlog }) {
           </div>
           
           {/* Mobile Social Share */}
-          <div className="flex lg:hidden items-center justify-center gap-4 mt-12 pt-8 border-t border-border/50">
-            <span className="text-sm font-semibold text-foreground">Share:</span>
-            <button onClick={() => handleShare('twitter')} className="p-2.5 bg-secondary hover:bg-primary/10 hover:text-primary rounded-full transition-colors text-muted-foreground">
+          <div className="flex lg:hidden flex-wrap items-center justify-center gap-3 mt-12 pt-8 border-t border-border/50">
+            <span className="text-sm font-semibold text-foreground w-full text-center sm:w-auto sm:text-left">Share:</span>
+            <button type="button" aria-label="Share on X (Twitter)" onClick={() => handleShare("twitter")} className="p-2.5 bg-secondary hover:bg-primary/10 hover:text-primary rounded-full transition-colors text-muted-foreground">
               <Twitter className="w-4 h-4" />
             </button>
-            <button onClick={() => handleShare('linkedin')} className="p-2.5 bg-secondary hover:bg-primary/10 hover:text-primary rounded-full transition-colors text-muted-foreground">
+            <button type="button" aria-label="Share on LinkedIn" onClick={() => handleShare("linkedin")} className="p-2.5 bg-secondary hover:bg-primary/10 hover:text-primary rounded-full transition-colors text-muted-foreground">
               <Linkedin className="w-4 h-4" />
             </button>
-            <button onClick={() => handleShare('facebook')} className="p-2.5 bg-secondary hover:bg-primary/10 hover:text-primary rounded-full transition-colors text-muted-foreground">
+            <button type="button" aria-label="Share on Facebook" onClick={() => handleShare("facebook")} className="p-2.5 bg-secondary hover:bg-primary/10 hover:text-primary rounded-full transition-colors text-muted-foreground">
               <Facebook className="w-4 h-4" />
             </button>
+            <button type="button" aria-label={linkCopied ? "Link copied" : "Copy article link"} onClick={() => handleShare("copy")} className="p-2.5 bg-secondary hover:bg-primary/10 hover:text-primary rounded-full transition-colors text-muted-foreground">
+              {linkCopied ? <Check className="w-4 h-4 text-green-500" /> : <Share2 className="w-4 h-4" />}
+            </button>
+          </div>
+
+          {/* Author social links */}
+          <div className="mt-16 pt-10 border-t border-border/50 rounded-2xl bg-secondary/20 p-8 md:p-10 border border-border/40">
+            <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">Let&apos;s connect</h3>
+            <p className="text-muted-foreground text-sm md:text-base mb-8 max-w-xl">
+              If this article helped you, I&apos;d love to hear from you. Reach out on any of these channels.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.title}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-card/80 border border-border/50 text-foreground text-sm font-medium hover:border-primary/40 hover:bg-primary/5 transition-colors"
+                >
+                  <link.icon className="w-4 h-4 text-primary shrink-0" aria-hidden />
+                  {link.title}
+                </a>
+              ))}
+            </div>
           </div>
 
         </div>

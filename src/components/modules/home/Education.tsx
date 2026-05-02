@@ -54,9 +54,15 @@ export default function Education() {
                     transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                     className="mb-20 lg:mb-28"
                 >
-                    <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground">
-                        Education & Learning
-                    </h2>
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-foreground tracking-tight"
+                    >
+                        Education <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60 italic">& Learning</span>
+                    </motion.h2>
                 </motion.div>
 
                 {/* Left-Aligned Timeline Layout */}

@@ -17,9 +17,9 @@ const Projects = () => {
     // Ensuring we handle capitalizations safely since data may have Front-End vs Frontend
     const filteredProjects = filter === 'All'
         ? PROJECTS
-        : PROJECTS.filter(project => 
+        : PROJECTS.filter(project =>
             project.category.replace("-", "").toLowerCase() === filter.replace("-", "").toLowerCase()
-          );
+        );
 
     return (
         <section id="projects" className='relative py-10 md:py-20 px-0 md:px-12 bg-background overflow-hidden'>
@@ -36,9 +36,15 @@ const Projects = () => {
                             <Sparkles className="w-5 h-5 text-primary" />
                             <span className="text-primary font-mono font-bold tracking-widest uppercase text-xs">Portfolio</span>
                         </div>
-                        <h2 className="text-4xl md:text-5xl lg:text-7xl font-semibold tracking-tight text-foreground leading-tight">
-                            Selected Works
-                        </h2>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-foreground tracking-tight"
+                        >
+                            Selected <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60 italic">Works</span>
+                        </motion.h2>
                     </motion.div>
 
                     {/* Filter Buttons */}

@@ -44,10 +44,13 @@ export default function Blogs() {
           </motion.div>
 
           <motion.h2
-            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-            className="text-4xl md:text-5xl font-bold tracking-tight mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-100px" }}
+            className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-foreground tracking-tight py-3"
           >
-            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500">Journal</span>
+            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60 italic">Journal</span>
           </motion.h2>
 
           <motion.p

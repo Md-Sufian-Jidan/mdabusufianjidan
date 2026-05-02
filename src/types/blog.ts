@@ -3,11 +3,11 @@ export interface IVideo {
   title: string;
   thumbnail: string;
   url: string;
-  language: 'English' | 'Bangla' | string;
+  language: 'English' | 'Bangla' | 'Hindi' | string;
   description: string;
 }
 
-export type IBlogContentBlock = 
+export type IBlogContentBlock =
   | { type: 'paragraph'; text: string }
   | { type: 'heading'; text: string; level: 2 | 3 | 4 }
   | { type: 'code'; language: string; code: string; filename?: string }

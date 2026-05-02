@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { Code2, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -11,17 +11,28 @@ import { navLinks } from "@/data/public/data";
 import { ModeToggle } from "./ModeToggle";
 import { getIconComponent } from "./iconMapper";
 
+const sectionIdFromHref = (href: string) => (href === "/" ? "home" : href.replace("#", ""));
+
 const Navbar = () => {
     const router = useRouter();
+    const pathname = usePathname();
     const [open, setOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState("home");
+    const isHomePage = pathname === "/";
 
     useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
+        const onScroll = () => setScrolled(window.scrollY > 20);
+        window.addEventListener("scroll", onScroll);
+        onScroll();
+        return () => window.removeEventListener("scroll", onScroll);
+    }, []);
 
-            const sections = navLinks.map(link => link.href.replace("#", ""));
+    useEffect(() => {
+        if (!isHomePage) return;
+
+        const handleSectionSpy = () => {
+            const sections = navLinks.map((link) => sectionIdFromHref(link.href));
             for (const section of sections) {
                 const element = document.getElementById(section);
                 if (element) {
@@ -33,9 +44,10 @@ const Navbar = () => {
             }
         };
 
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+        window.addEventListener("scroll", handleSectionSpy);
+        handleSectionSpy();
+        return () => window.removeEventListener("scroll", handleSectionSpy);
+    }, [isHomePage]);
 
     return (
         <header
@@ -65,7 +77,8 @@ const Navbar = () => {
                 {/* Desktop Menu - Floating Pill Style */}
                 <div className="hidden md:flex items-center gap-1 bg-muted/50 p-1 rounded-xl border border-border/50 backdrop-blur-sm">
                     {navLinks.map((item) => {
-                        const isActive = activeSection === item.href.replace("#", "");
+                        const sectionId = sectionIdFromHref(item.href);
+                        const isActive = isHomePage && activeSection === sectionId;
                         const Icon = getIconComponent(item.icon)
                         return (
                             <Link

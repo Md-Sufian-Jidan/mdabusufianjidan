@@ -265,11 +265,12 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const navLinks: NavLink[] = [
-    { title: "Home", href: "#home", icon: "Home" },
+    { title: "Home", href: "/", icon: "Home" },
     { title: "About", href: "#about", icon: "User" },
     { title: "Technologies", href: "#technologies", icon: "Code2" },
     { title: "Experience", href: "#experience", icon: "Briefcase" },
     { title: "Projects", href: "#projects", icon: "FolderKanban" },
     { title: "Services", href: "#services", icon: "Layers" },
     { title: "Contact", href: "#contact", icon: "Mail" },
+    { title: "Blogs", href: "/blogs", icon: "BookOpenText" },
 ];

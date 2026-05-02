@@ -49,7 +49,7 @@ export default function Contact() {
         visible: {
             opacity: 1,
             y: 0,
-            transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1]}
+            transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
         }
     };
 
@@ -80,10 +80,18 @@ export default function Contact() {
                             <motion.span variants={itemVariants} className="text-primary font-mono text-sm tracking-widest uppercase mb-4 block">
                                 Contact
                             </motion.span>
-                            <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground mb-6">
-                                Let&apos;s build something <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/50">extraordinary.</span>
+
+                            <motion.h2
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+                                viewport={{ once: true, margin: "-100px" }}
+                                className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-foreground tracking-tight py-3"
+                            >
+                                Let&apos;s build something <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60 italic">extraordinary.</span>
                             </motion.h2>
-                            <motion.p variants={itemVariants} className="text-muted-foreground text-lg leading-relaxed font-inter max-w-md">
+
+                            <motion.p variants={itemVariants} className="text-muted-foreground text-lg leading-relaxed font-inter max-w-md pt-3">
                                 Whether you have a project in mind, want to collaborate, or just want to say hi, my inbox is always open.
                             </motion.p>
                         </div>

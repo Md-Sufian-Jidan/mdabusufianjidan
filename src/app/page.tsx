@@ -32,15 +32,16 @@ const Services = dynamic(() => import("@/components/modules/home/Services"), {
   ssr: true,
 });
 
+const Blogs = dynamic(() => import("@/components/modules/blog/Blogs"), {
+  loading: () => <div className="h-screen animate-pulse bg-muted/40" />,
+  ssr: true,
+});
+
 const Contact = dynamic(() => import("@/components/modules/home/Contact"), {
   loading: () => <div className="h-96 animate-pulse bg-muted/20" />,
   ssr: true,
 });
 
-const Blogs = dynamic(() => import("@/components/modules/blog/Blogs"), {
-  loading: () => <div className="h-screen animate-pulse bg-muted/40" />,
-  ssr: true,
-});
 
 export default function Home() {
   return (
